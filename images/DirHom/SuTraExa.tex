@@ -1,0 +1,69 @@
+\begin{tikzpicture}[auto,scale = 0.85]
+\draw (0,0) rectangle (1.5,1.5);
+\draw (1.5,1.5) rectangle (4,4);
+\draw [fill = gray!50,draw = gray!50] (0.5,0.5) rectangle (1,1);
+\draw [fill = gray!50,draw = gray!50] (2,3) rectangle (2.5,3.5);
+\draw [fill = gray!50,draw = gray!50] (3,2) rectangle (3.5,2.5);
+\draw [dotted] (1,0) to (1,1.5);
+\draw [dotted] (0.5,0) to (0.5,1.5);
+\draw [dotted] (0,1) to (1.5,1);
+\draw [dotted] (0,0.5) to (1.5,0.5);
+\draw [dotted] (2,1.5) to (2,4);
+\draw [dotted] (2.5,1.5) to (2.5,4);
+\draw [dotted] (3,1.5) to (3,4);
+\draw [dotted] (3.5,1.5) to (3.5,4);
+\draw [dotted] (1.5,2) to (4,2);
+\draw [dotted] (1.5,2.5) to (4,2.5);
+\draw [dotted] (1.5,3) to (4,3);
+\draw [dotted] (1.5,3.5) to (4,3.5);
+\draw (0.75,-0.1) to (0.75,0.1);
+\draw (-0.1,0.75) to (0.1,0.75);
+\draw (2.25,1.4) to (2.25,1.6);
+\draw (3.25,1.4) to (3.25,1.6);
+\draw (1.4,2.25) to (1.6,2.25);
+\draw (1.4,3.25) to (1.6,3.25);
+\node (S11) at (0.75,-0.3) {\footnotesize{S}};
+\node (U21) at (-0.3,0.75) {\footnotesize{U}};
+\node (U11) at (2.25,1.2) {\footnotesize{U}};
+\node (S12) at (3.25,1.2) {\footnotesize{S}};
+\node (U22) at (1.2,2.25) {\footnotesize{U}};
+\node (S21) at (1.2,3.25) {\footnotesize{S}};
+\draw [thick] (0,0) .. controls (0.3,1.5)  .. (1.5,1.5);
+\draw [thick] (0,0) .. controls (1.5,0.3)  .. (1.5,1.5);
+\draw [thick] (1.5,1.5) to (4,4);
+\draw [thick] (1.5,1.5) .. controls (1.6,4)  .. (4,4);
+\draw [thick] (1.5,1.5) .. controls (4,1.6)  .. (4,4);
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw[color = white] (0,-1) rectangle (3,-1.1);
+\end{tikzpicture}
+\begin{tikzpicture}[auto,scale = 0.9]
+\draw (0,0) rectangle (2.5,2.5);
+\draw [fill = gray!50,draw = gray!50] (0.5,0.5) rectangle (1,1);
+\draw [fill = gray!50,draw = gray!50] (0.5,1.5) rectangle (1,2);
+\draw [fill = gray!50,draw = gray!50] (1.5,0.5) rectangle (2,1);
+\draw [fill = gray!50,draw = gray!50] (1.5,1.5) rectangle (2,2);
+\draw [dotted] (1,0) to (1,2.5);
+\draw [dotted] (0.5,0) to (0.5,2.5);
+\draw [dotted] (1.5,0) to (1.5,2.5);
+\draw [dotted] (2,0) to (2,2.5);
+\draw [dotted] (0,1) to (2.5,1);
+\draw [dotted] (0,0.5) to (2.5,0.5);
+\draw [dotted] (0,1.5) to (2.5,1.5);
+\draw [dotted] (0,2) to (2.5,2);
+\draw (0.75,-0.1) to (0.75,0.1);
+\draw (-0.1,0.75) to (0.1,0.75);
+\draw (1.75,-0.1) to (1.75,0.1);
+\draw (-0.1,1.75) to (0.1,1.75);
+\node (S11) at (0.75,-0.3) {\footnotesize{S}};
+\node (U21) at (-0.3,0.75) {\footnotesize{U}};
+\node (S12) at (1.75,-0.3) {\footnotesize{S}};
+\node (U22) at (-0.3,1.75) {\footnotesize{U}};
+\draw [thick] (0,0) .. controls (0.2,1.25)  .. (1.25,1.25);
+\draw [thick] (0,0) .. controls (1.25,0.2)  .. (1.25,1.25);
+\draw [thick] (2.5,2.5) .. controls (1.25,2.3)  .. (1.25,1.25);
+\draw [thick] (2.5,2.5) .. controls (2.3,1.25)  .. (1.25,1.25);
+\draw [thick] (0,0) .. controls (0.1,2.5)  .. (2.5,2.5);
+\draw [thick] (0,0) .. controls (2.5,0.1)  .. (2.5,2.5);
+\node (b) at (0,-1) {};
+\end{tikzpicture}

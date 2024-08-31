@@ -1,0 +1,45 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (00) at (0,0) {$\bullet$};
+	\node (01) at (2,0) {$\bullet$};
+	\node (02) at (4,0) {$\bullet$};
+	\node (10) at (0,2) {$\bullet$};
+	\node (11) at (2,2) {$\bullet$};
+	\node (12) at (4,2) {$\bullet$};
+	\node (20) at (0,4) {$\bullet$};
+	\node (21) at (2,4) {$\bullet$};
+	\node (22) at (4,4) {$\bullet$};
+	\node (23) at (6,4) {$\bullet$};
+	\node (32) at (4,6) {$\bullet$};
+	\node (33) at (6,6) {$\bullet$};
+	\node (42) at (4,8) {$\bullet$};
+	\node (43) at (6,8) {$\bullet$};
+	
+	\draw[draw = white, fill = gray!50] (0.1,2.1) rectangle (1.9,3.9);
+	\draw[draw = white, fill = gray!50] (2.1,2.1) rectangle (3.9,3.9);
+	\draw[draw = white, fill = gray!50] (4.1,6.1) rectangle (5.9,7.9);
+
+	\path[->,font=\scriptsize]
+		(00) edge node[below]{$S$} (01)
+		(01) edge node[below]{$S$} (02)
+		(10) edge node[below]{$S$} (11)
+		(11) edge node[below]{$S$} (12)
+		(20) edge node[above]{$S$} (21)
+		(21) edge node[above]{$S$} (22)
+		(00) edge node[left]{$U$} (10)
+		(10) edge node[left]{$S$} (20)
+		(01) edge node[left]{$U$} (11)
+		(11) edge node[left]{$S$} (21)
+		(02) edge node[right]{$U$} (12)
+		(12) edge node[right]{$S$} (22)
+		(22) edge node[below]{$U$} (23)
+		(32) edge node[below]{$U$} (33)
+		(42) edge node[above]{$U$} (43)
+		(22) edge node[left]{$S$} (32)
+		(23) edge node[right]{$S$} (33)
+		(32) edge node[left]{$U$} (42)
+		(33) edge node[right]{$U$} (43);
+			
+\end{tikzpicture}
+

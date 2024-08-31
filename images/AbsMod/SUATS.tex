@@ -1,0 +1,32 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (11) at (0,0) {$\bullet$};
+	\node (12) at (0,1.5) {$\bullet$};
+	\node (13) at (0,3) {$\bullet$};
+	\node (21) at (1.5,0) {$\bullet$};
+	\node (22) at (1.5, 1.5) {$\bullet$};
+	\node (23) at (1.5,3) {$\bullet$};
+	\node (31) at (3,0) {$\bullet$};
+	\node (32) at (3,1.5) {$\bullet$};
+	\node (33) at (3,3) {$\bullet$};
+	
+	\draw[draw = white, fill = gray!50] (0.1,1.6) rectangle (1.4,2.9);
+	\draw[draw = white, fill = gray!50] (1.6,1.6) rectangle (2.9,2.9);
+	
+	\path[->,font=\scriptsize]
+		(11) edge node[left]{$U$} (12)
+		(12) edge node[left]{$S$} (13)
+		(21) edge node[left]{$U$} (22)
+		(22) edge node[left]{$S$} (23)
+		(31) edge node[right]{$U$} (32)
+		(32) edge node[right]{$S$} (33)
+		(11) edge node[below]{$S$} (21)
+		(21) edge node[below]{$S$} (31)
+		(12) edge node[below]{$S$} (22)
+		(22) edge node[below]{$S$} (32)
+		(13) edge node[above]{$S$} (23)
+		(23) edge node[above]{$S$} (33);
+			
+\end{tikzpicture}
+

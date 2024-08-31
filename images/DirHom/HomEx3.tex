@@ -1,0 +1,41 @@
+  \begin{tikzpicture}[auto,scale = 1.2]
+%    \draw [fill = gray!25, draw = gray!75] (0,0) rectangle (1.4,1.4);
+%    \node (c) at (0.7,0.7) {$A$};
+%    \node   (x1) at (-0.2,-0.2) {\footnotesize{$s$}};
+%    \node  (x2) at (1.6,-0.2) {\footnotesize{$s'$}};
+%    \node  (x3) at (-0.2,1.6) {\footnotesize{$t$}};
+%    \node  (x4) at (1.6,1.6) {\footnotesize{$t'$}};
+%    \draw [thick] (0,0) to node [swap] {\footnotesize{$a$}} (1.4,0);
+%    \draw [thick] (0,0) to node {\footnotesize{$b$}} (0,1.4);
+%    \draw [thick] (1.4,0) to node [swap] {\footnotesize{$c$}} (1.4,1.4);
+%    \draw [thick] (0,1.4) to node {\footnotesize{$d$}} (1.4,1.4);
+
+	\draw (0,0) -- (0,2);
+	\draw (-1,1)  to [bend right = 45] (0,0);
+	\draw  (0,2) to [bend right = 45] (-1,1);
+	\draw (0,0) to [bend right = 45] (1,1);
+	\draw (0,2) to [bend left = 45] (1,1);
+	\node at (0,0) {$\bullet$};
+	\node at (0,2) {$\bullet$};
+	\node[rotate=-90] at (0,1) {$\blacktriangleleft$};
+	\node[rotate=-90] at (-1,1) {$\blacktriangleleft$};
+	\node[rotate=-90] at (1,1) {$\blacktriangleleft$};
+	\node at (0,-0.3) {\scriptsize{$0$}};
+	\node at (0,2.3) {\scriptsize{$1$}};
+	\node at (-1.2,1) {\scriptsize{$a$}};
+	\node at (0.2,1) {\scriptsize{$b$}};
+	\node at (1.2,1) {\scriptsize{$c$}};
+	\draw (-0.8,0.4) to [bend right = 30] (0,0.4);
+	\draw (-0.98,0.8) to [bend right = 30] (0,0.8);
+	\draw (-0.8,1.6) to [bend right = 30] (0,1.6);
+	\draw (-0.98,1.2) to [bend right = 30] (0,1.2);
+	\draw[dotted] (-0.8,0.4) to [bend left = 30] (0,0.4);
+	\draw[dotted] (-0.98,0.8) to [bend left = 30] (0,0.8);
+	\draw[dotted] (-0.8,1.6) to [bend left = 30] (0,1.6);
+	\draw[dotted] (-0.98,1.2) to [bend left = 30] (0,1.2);
+	\draw[->] (-1.2,0.2) to [bend right = 30] (-0.5,0.5);
+	\node at (-1.4,0.2) {\scriptsize{$A$}};
+	\node at (-1.4,1.8) {\scriptsize{$B$}};
+	\draw[dotted,<-] (-0.5,1.5) to [bend right = 30] (-0.66,1.75);
+	\draw (-1.2,1.8) to [bend left = 30] (-0.66,1.75);
+  \end{tikzpicture}

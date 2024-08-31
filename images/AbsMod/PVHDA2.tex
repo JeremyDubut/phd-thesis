@@ -1,0 +1,26 @@
+
+\begin{tikzpicture}[scale=0.7]
+		
+	\foreach \x in {0,...,5}
+   		 \foreach \y in {0,...,5} 
+      			 \node  (\x\y) at (1.5*\x,1.5*\y) {$\bullet$};
+	\foreach \x in {0,...,5}
+   		 \foreach \y [count=\yi] in {0,...,4}  
+     			 {\ifthenelse{2 = \x \AND  2 = \y}{}
+			 	{\ifthenelse{3 = \x \AND 2 = \y}{}{\draw[->] (\x\y)-- (\x\yi); \draw[->] (\y\x)-- (\yi\x);}}}
+				
+	\foreach \x [count=\xi] in {0,...,4}
+   		 \foreach \y [count=\yi] in {0,...,4}  
+		 	{\ifthenelse{2 = \x \AND 2 = \y}{}
+				{\ifthenelse{1 = \x \AND 2 = \y}{}
+					{\ifthenelse{2 = \x \AND 1 = \y}{}
+						{\ifthenelse{2 = \x \AND 3 = \y}{}
+							{\ifthenelse{3 = \x \AND 2 = \y}{}
+			{\draw[draw = white, fill = gray!50] {(\x\y)+(0.1,0.1)} rectangle (1.5*\xi-0.1,1.5*\yi-0.1);}}}}}}
+     			 
+				
+	
+	
+			
+\end{tikzpicture}
+

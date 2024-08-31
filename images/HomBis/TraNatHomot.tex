@@ -1,0 +1,11 @@
+    \begin{tikzpicture}
+      \node (Fx') at (1,0) {$\tracep{X}{s'}{t'}$};
+      \node (Fx) at (1,2.5) {$\tracep{X}{s}{t}$};
+    \node (Gy') at (10,0) {$\tracep{X}{\widehat{\carrier(s')}}{\widehat{\carrier(t')}}$};
+    \node (Gy) at (10,2.5) {$\tracep{X}{\widehat{\carrier(s)}}{\widehat{\carrier(t)}}$};
+      \path[->,font=\scriptsize] 
+      		(Fx) edge node[left]{$\tra{\alpha \star \_ \star \beta}$} (Fx')
+      		(Fx) edge node[above]{$\tau_{\tra{\gamma}}$} (Gy)
+      		(Fx') edge node[below]{$\tau_{\tra{\alpha\star\gamma\star\beta}}$} (Gy')
+      		(Gy) edge node[right]{$\tra{\widehat{\carrier(\alpha)} \star \_ \star \widehat{\carrier(\beta)}}$} (Gy');
+    \end{tikzpicture}

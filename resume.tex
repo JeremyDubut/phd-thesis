@@ -1,0 +1,193 @@
+\chapter{Résumé en français}
+%\addcontentsline{toc}{chapter}{Résumé en français}
+
+\section*{Introduction}
+
+Les systèmes concurrents sont un modèle particulier où différents agents, ou processus, évoluent dans le même environnement. Ils doivent cohabiter en gérant les resources disponibles et en évitant les conflits. Vérifier de tels systèmes est une tâche difficile: il est nécessaire de s'assurer que le système ne fasse jamais rien de mauvais, quelque soit son comportement. Il est possible d'appliquer des méthodes classiques venant des systèmes séquentiels, en vérifiant toutes les exécutions possibles du système, c'est-à-dire, ce qui est utilisé dans les sémantiques par \emph{entrelacements} de la concurrence. Cependant, le nombre de telles exécutions croît exponentiellement avec la taille du système, ce qui rend ces méthodes inapplicables.
+
+L'idée de la \emph{vraie concurrence} est que de nombreuses exécutions peuvent avoir exactement le même comportement, puisque, pour chaque agent, les exécutions sont les mêmes, et qu'elles diffèrent seulement par la façon dont les actions de chaque agent sont planifiées les unes par rapport aux autres. Cela suggère qu'il faudrait étudier non pas toutes les exécutions possibles, mais toutes les exécutions modulo une relation d'équivalence reliant des exécutions qui diffèrent seulement par permutation d'actions indépendantes, ce qui décroit grandement le nombre d'objets à considérer.
+
+De manière surprenante, les modèles de la vraie concurrence sont très géométriques par nature: ils possèdent une structure algébrique qui peut être interprétée topologiquement. Grossièrement, un tel système est un espace topologique d'états, où les exécutions sont interprétées comme des chemins monotones (ou de manière plus précise, \emph{dirigés}) dans cet espace, suivant le flot d'exécution du système. La relation d'équivalence sur les exécutions est alors elle-même interprétée continûment: deux exécutions, vues comme des chemins dirigés, sont équivalents s'il est possible de déformer continûment l'une en l'autre, tout en préservant la direction du temps, le flot d'exécution.
+
+Cela amène à l'idée que ces systèmes de vraie concurrence doivent être étudiés géométriquement, en utilisant des outils mathématiques. De plus, étudier des espaces, leurs chemins, les déformations continues entre leurs chemins est l'une des idées principales d'un domaine bien connu des mathématiques: la topologie algébrique. Intuitivement, son but est d'étudier des espaces à déformations continues près, en utilisant des structures algébriques (catégories, groupes, modules, ...) qui reflètent la géométrie de l'espace: les chemins, les déformations continues entre chemins, les déformations continues entre déformations continues, etc.
+
+La seule différence avec notre étude des systèmes de vraie concurrence est le role crucial de la direction du flot d'exécution. Tout doit être compatible avec celle-ci: les chemins doivent être dirigés, les déformations doivent être dirigée d'une façon ou d'une autre, etc. Cela ouvre un nouveau champs de recherche: la \emph{topologie algébrique dirigée}, où le but principal est de construire des invariants algébriques similaires à la topologie algébrique classique, de définir des notions convenables de déformations qui préserve la direction, etc.
+
+\section*{Modéliser la vraie concurrence}
+
+Les modèles de la vraie concurrence ont été conçus en étendant les modèles classiques, comme les systèmes de transition et leur sémantique par entrelacement. L'idée est de pouvoir spécifier que des actions peuvent être indépendantes et peuvent ainsi être exécutées dans n'importe quel ordre, mais aussi (et surtout), \emph{simultanément}. Un exemple typique est le cas de deux agents $A$ et $B$, effectuant des calculs et mettant à jour la valeur de variables. Par exemple, supposons qu'il y a deux variables différentes $X$ et $Y$ et que $A$ veut modifier la valeur de $X$ à $0$, ce que l'on notera $X := 0$; $B$ veux changer la valeur de $Y$ à $1$, noté $Y := 1$, tout cela en parallèle. Dans les systèmes de transition, ce système concurrent serait modélisé comme suit:
+	\begin{figure}[H]
+		\begin{center}
+    			\input{images/AbsMod/TSconcur}
+  		\end{center}
+	\end{figure}
+Avec ce modèle, les différents comportements possibles sont soit $A$ effectue son action en premier puis $B$ fait son action, soit $B$ effectue son action en premier puis $A$ fait son action, et ces deux comportement sont considérés de manière indépendante. Cependant, avec l'idée de la vraie concurrence, comme $A$ et $B$ mettent à jour des variables différentes, il n'y aucun conflit ou réelle concurrence sur les resources (ici, les variables). Ces actions peuvent donc être considérées indépendantes, ce qui signifie que faire l'une avant l'autre est équivalent à faire l'autre avant l'une, et que ces actions peuvent, en réalité, être effectuées simultanément.
+
+Il y a plusieurs façon de spécifier que des actions sont indépendantes:
+\begin{itemize}
+	\item la première idée est de définir une relation directement sur les actions qui représente le fait qu'elles soient indépendantes. Cela amène à la notion de \emph{systèmes de transition avec indépendance} \cite{nielsen94}.
+	\item la deuxième idée est de regrouper les transitions qui représentent le même évènement. Dans l'exemple précédent, les deux transitions étiquetées par $X := 0$ représentent le même évènement, à savoir ``$A$ met à jour la valeur de $X$ à $0$''. Il est alors possible de définir une relation d'équivalence sur ces évènements, ce qui amène à la notion de \emph{systèmes asynchrones} \cite{shields85,bednarczyk87}.
+	\item la dernière idée est de spécifier les carrés de transitions de la forme:
+	\begin{figure}[H]
+		\begin{center}
+    			\input{images/Intro/HDASq}
+  		\end{center}
+	\end{figure}
+	où $a$ et $b$ sont indépendantes et d'ajouter un carré formel dans la spécification, représenté comme suit:
+	\begin{figure}[H]
+		\begin{center}
+    			\input{images/Intro/HDASq2}
+  		\end{center}
+	\end{figure}
+	Cette idée peut être étendue aux dimensions supérieures: il est possible de spécifier des cubes de transitions de dimension $n$, où les transitions parallèles sont étiquetées par la même action, et où toutes les actions sont indépendantes les unes par rapport aux autres et enfin ajouter un cube de dimension $n$ dans la spécification. Cela amène à la notion d'automates de dimension supérieure \cite{pratt91} (raccourci en HDA).
+\end{itemize}
+
+Tous ces modèles sont accompagnés d'une façon de les comparer, définie à l'aide de bisimulations, étendant le travail sur les systèmes de transition classiques.
+
+Les HDA sont très géométriques par nature. Ils sont définis comme des collections d'éléments de diverses dimensions représentants les comportements indépendants des actions du système. Ces objets formels satisfont certaines conditions de ``bord'': grossièrement, tout sous-ensemble parmi un ensemble de $n$ actions indépendantes est un ensemble d'actions indépendantes. Cela permet d'interpréter les objets de dimension $n$ comme un cube géométrique de dimension $n$, et les équations satisfaites représentent des conditions de recollements de ces cubes. Pour résumer, à partir d'un HDA, il est possible de construire un espace topologique en recollant les cubes suivant les équations. Cet espaces représente l'espace des états de l'HDA, et est appelé sa \emph{réalisation géométrique}. Par exemple, le carré représenté au dessus peut être représenté géométriquement par un carré réel $[0,1]\times[0,1]$.
+
+A partir de cette interprétation géométrique, il est possible de voir les exécutions comme des chemins, c'est-à-dire, des fonctions continues du segment $[0,1]$ dans la réalisation géométrique. Le seul problème est que le caractère dirigé n'est pas pris en compte: une exécution dans un HDA est dirigée par nature. Elle a une source et un but, et il n'est possible d'aller que de la source vers le but. Géométriquement, une exécution modélisée comme une copie du segment $[0,1]$ dans la réalisation géométrique, la source étant envoyée sur $0$ et le but sur $1$. Le problème est que les chemins définis de cette façon ne sont pas dirigés (ici, comprendre monotone), et ainsi il est possible de définir un chemin du but vers la source. Ces chemins ne peuvent pas être interprétés comme des exécutions du HDA. Il est donc nécessaire de spécifier d'une façon ou d'une autre que la réalisation géométrique est dirigée: les cubes $[0,1]^n$ utilisés pour construire la réalisation géométrique sont naturellement dirigés. Il est possible de les équiper d'un ordre partiel, à savoir l'ordre produit. Cet ordre local à chaque cube peut être étendu en une structure dirigée sur la réalisation géométrique toute entière:
+\begin{itemize}
+	\item soit en suivant l'idée des variétés, en considérant comme structure dirigée une collection d'ordre locaux qui interagissent bien globalement. Cela amène aux \emph{espaces localement partiellement ordonnés} \cite{fajstrup03} et aux \emph{streams} \cite{krishnan09},
+	\item soit en spécifiant une collection de chemins qui sont localement monotones. Cela amène aux \emph{d-espaces} \cite{grandis01}.
+\end{itemize}
+Dans tous les cas, la structure dirigée permet de définir des \emph{chemins dirigés}, qui sont des chemins compatibles avec la structure, et qui modéliseront les exécutions.
+
+En suivant l'idée de la vraie concurrence, les exécutions d'un HDA peuvent être reliées par une relation d'équivalence interprétant que les exécutions sont égales à permutation des actions indépendantes près. Cette relation d'équivalence est appelée \emph{homotopie} dans \cite{vanglabbeek05}, et fait écho à l'homotopie bien connue de la topologie algébrique. Géométriquement, l'homotopie dans les HDA peut être interprétée comme une notion d'homotopie dirigée ou \emph{dihomotopie}, intuitivement, une relation similaire à l'homotopie classique dans les espaces topologiques, satisfaisant en plus une certaine compatibilité avec la structure dirigée. De manière un peu plus concrète, l'homotopy classique est une relation d'équivalence qui relie des chemins qui peuvent continûment être déformés l'un en l'autre. De manière similaire, la dihomotopie est une relation d'équivalence qui relie des chemins dirigés qui peuvent continûment être déformés l'un en l'autre, de façon à ce que la déformation soit compatible avec la structure dirigée.
+
+Il est donc possible d'interpréter l'essence calculatoire d'un HDA géométriquement: l'espace dirigé représente les états, la structure dirigée en elle-même représente le flot d'exécution, les chemins dirigés représentent les exécutions, les dihomotopies représentent la relation d'équivalence modulo permutation d'actions indépendantes. L'étude systématique des espaces, de leurs chemins, des déformations continues entre chemins, ..., est le corps principal du domaine de la topologie algébrique. Dans ce domaine, on étudie les espaces modulo déformations continues, appelées \emph{homotopies équivalences}, en construisant des invariants algébriques. Par exemple, les chemins modulo homotopies forment les morphismes d'une catégories, appelée la \emph{catégorie fondamentale} de l'espace, et en est un invariant modulo homotopie équivalence. D'autres invariants algébriques ont été considérés: groupes d'homotopies, modules d'homologies, de cohomologie, ... Le but de la \emph{topologie algébrique dirigée} est d'étendre ce travail à un cadre dirigé, en définissant des analogues dirigés aux équivalences d'homotopies, ainsi qu'aux invariants algébriques. Des travaux notoires ont été effectués dans ce sens:
+\begin{itemize}
+	\item les travaux de Marco Grandis, compilés dans \cite{grandis09}, forme une jolie théorie de la topologie algébrique dirigée, pour une notion spécifique d'équivalence d'homotopie. Ces travaux échouent néanmoins à décrire certains comportements qui nous intéressent ici.
+	\item les travaux de \cite{fajstrup16}. Notamment, leurs travaux sur les espaces de traces (une autre façon d'interpréter les exécutions géométriquement) et les composantes dirigées (analogues dirigés des composantes connexes par arcs) furent une base solide pour la présente thèse.
+\end{itemize}
+	Le but de celle-ci est de continuer sur cette voie en étudiant des théories homotopiques et homologiques pour ces espaces dirigés.
+	
+	\section*{Théories homotopiques pour les d-espaces}
+	
+	Revenons un peu sur les invariants algébriques en topologie algébrique classique, notamment la catégorie fondamentale $\pi_1(X)$, catégorie des points et chemins modulo homotopies, est un invariant de l'espace $X$ modulo équivalence d'homotopie. Que cela signifie-t-il ? Tout d'abord, une équivalence d'homotopie est définie comme une fonction continue qui est un homéomorphisme à déformations continues près. De manière plus précise, c'est une fonction $\map{f}{X}{Y}$ telle qu'il existe une fonction continue $\map{g}{Y}{X}$ telle que $g\circ f$ et $f\circ g$ sont, à déformations continues près, égales à des identités. Cette dernière propriété se traduit par l'existence d'une fonction continue $\map{H}{X}{P(X)}$, aussi appelée homotopie, où $P(X)$ est l'espace des chemins de $X$, telle que $H(x)(0) = x$ et $H(x)(1) = g\circ f$ (idem pour $f\circ g$). Maintenant, la construction de la catégorie fondamentale étant fonctorielle, une fonction continue $\map{f}{X}{Y}$ induit un foncteur $\map{\pi_1(f)}{\pi_1(X)}{\pi_1(Y)}$. De plus, une homotopie entre deux fonctions continues induit un isomorphisme naturel entre les foncteurs induits (il est facile de voir que c'est isomorphisme car la catégorie fondamentale d'un espace est toujours un groupoïde, tout chemin ayant un inverse modulo homotopie). Par conséquent, une équivalence d'homotopie induit une équivalence de catégories entre les catégories fondamentales. C'est en ce sens que la catégorie fondamentale est un invariant.
+	
+	Maintenant, que pouvons-nous faire dans le cas dirigé ? La catégorie fondamentale, cette fois notée $\funcat{X}$, fait toujours sens: c'est la catégorie des points et des chemins dirigés modulo dihomotopies. En quoi, pouvons-nous dire que c'est un invariant ? Pour quelle relation d'équivalence sur les d-espaces ? Il y a plusieurs façons naturelles d'étendre la notion d'équivalence d'homotopie à un cadre dirigé (cf. \cite{grandis09} par exemple). Par exemple, il suffit d'étendre la notion d'homotopie entre dimaps (fonctions continues qui préservent la structure dirigée): une dihomotopie est une fonction continue $\map{H}{X}{K}$, où $K$ est un sous-espace de l'espace des chemins $P(Y)$, et telle que pour tout $t \in [0,1]$, $x \mapsto H(x)(t)$ est une dimap. Suivant le choix de $K$, on obtient différentes notions de dihomotopie et donc d'équivalence de dihomotopie:
+	\begin{itemize}
+		\item Le plus naturel serait de prendre $K = \dip{Y}$, l'ensemble des chemins dirigés. Dans ce cas, une équivalence de dihomotopie n'induit pas une équivalence de catégories entre les catégories fondamentale, mais entre leurs groupoidications. De plus, cette équivalence échoue à détecter certain défauts de dihomotopie. Un exemple typique est la boîte d'alumettes:
+					\begin{center}
+				\input{images/DihEq/MatchDih}
+			\end{center}
+		Ce d-espace est une cube d'intérieur vide duquel on a enlevé la face du dessous. Les chemins dirigés sont les chemins qui vont du haut vers le bas et du premier plan vers le fond. Dans cet espace, les chemins dirigés qui longent les bords de la face du dessous (soit vers la gauche, soit vers la droite) ne sont pas dihomotopes. Pourtant, la boîte d'alumettes est équivalente à un point selon cette définition, ce qui implique que cette définition n'est pas assez précise pour détecter ce genre défauts de dihomotopie. Cela est attendu: l'action de cette équivalence sur la catégorie fondamentale étant la groupoidification, elle gomme tout comportement non-cancellatif de la dihomotopie, comme c'est le cas dans la boîte.
+		\item une autre possibilité est de prendre $K = P(Y)$. Cette définition n'a aucune bonne propriété (une dihomotopie n'induit même pas une transformation naturelle entre les foncteurs induits).
+		\item Une dernière possibilité est de prendre $K = \rev{Y}$, à savoir l'ensemble des chemins réversibles, c'est-à-dire les chemins dirigés $\gamma$ tels que $\gamma^{-1}: t \mapsto \gamma(1-t)$ soit aussi dirigé. Dans ce cas, une équivalence de dihomotopie induit une équivalence de catégories entre les catégories fondamentales. Le problème est que cette définition est beaucoup trop forte: il est très difficile pour des espaces d'être équivalents. Par exemple, pour des po-espaces (des espaces munis d'un ordre partiels, les chemins dirigés étant les chemins monotones), cette équivalence correspond aux dihoméomorphismes.
+	\end{itemize}
+	
+	Il faudrait donc chercher une autre définition d'équivalence de dihomotopie et de comprendre quelle action celle-ci pourrait avoir sur la catégorie fondamentale. Il s'avère que cette catégorie fondamentale en elle-même (i.e., modulo équivalence de catégories) est un invariant très fort et que comme dans le cas de la première définition ci-dessus, il pourrait être préférable de la voir modulo une étape de localisation (i.e. d'inversion de certains morphismes). La groupoidification est en effet une localisation: elle est obtenue en inversant formellement tous les morphismes de la catégorie, ce qui est beaucoup trop, puisque certains morphismes n'agissent vraiment pas comme des isomorphismes (comme c'est le cas dans les phénomènes non-cancellatifs). C'est le point de vue considéré dans \cite{goubault07}, pour la construction des composantes connexes par arcs dirigées. L'idée est d'inverser seulement certains morphismes, appelés morphismes de Yoneda, qui induisent des bijections par composition à gauche et à droite. Les phénomènes non-cancellatifs sont des exemples typiques de morphismes qui ne sont pas de Yoneda. De plus, pour que la localisation ait de bonnes propriétés (typiquement, pour que l'on soit en présence de calculs de fractions à gauche et à droite), l'ensemble de morphismes à inverser est défini comme le plus grand ensemble de morphismes de Yoneda ayant des propriétés de pushouts/pullbacks. Ce sont les morphismes \emph{inéssentiels}. 
+	
+	C'est en suivant cette idée que nous avons définit notre notion d'équivalence de dihomotopie: la classe de chemins à considérer doit être une classe de chemins qui agissent comme des chemins réversibles, de la même façon que les morphismes inéssentiels dans les composantes agissent comme les isomorphismes. Nous avons alors construit une classe de chemins dirigés, les \emph{chemins inéssentiels}, comme le plus grand ensemble de chemins dirigés qui induisent des équivalences d'homotopie par concaténations à gauche et à droite, et qui satisfont des propriétés de Ore à gauche et à droite, modulo dihomotopie. De manière plus précise, on dit qu'un chemin dirigé $\gamma$ de $a$ vers $b$ est de Yoneda si:
+\begin{itemize}
+	\item \textbf{cancellation à droite:} pour tout point $c$ tel que $\dipp{X}{b}{c} \neq \varnothing$, la fonction continue:
+	$$\gamma\star c : \dipp{X}{b}{c} \rightarrow \dipp{X}{a}{c} ~~~ \rho \mapsto \gamma\star\rho$$
+	est une équivalence d'homotopie.
+	\item \textbf{cancellation à gauche:} symétriquement avec la concaténation à gauche.
+\end{itemize}
+L'ensemble de chemins inéssentiels $\ine{X}$ est le plus grand ensemble de chemins de Yoneda tel que:
+\begin{itemize}
+	\item \textbf{condition de Ore à droite:} pour tout dichemin $\gamma$ de $a$ vers $b$ dans $\ine{X}$, pour tout dichemin $\rho$ de $c$ vers $b$, il y a un dichemin $\gamma'$ de $d$ vers $c$ dans $W$ et un dichemin $\rho'$ de $d$ vers $a$ pour un certain $d$ tels que $\rho'\star\gamma$ est dihomotope à $\gamma'\star\rho$
+	\begin{center}
+	\begin{tikzpicture}[scale=2]
+		\node (A) at (0,1) {$d$};
+		\node (B) at (1.2,1) {$a$};
+		\node (C) at (0,0) {$c$};
+		\node (D) at (1.2,0) {$b$};
+		\node (E) at (0.6,0.5) {\scriptsize{mod. dihomot.}};
+		\path[->,font=\scriptsize,dotted]
+		(A) edge node[above]{$\rho'$} (B)
+		(A) edge node[left]{$\gamma'\in W$} (C);
+		\path[->,font=\scriptsize]
+		(C) edge node[below]{$\rho$} (D)
+		(B) edge node[right]{$\gamma\in W$} (D);
+	\end{tikzpicture}
+	\end{center}
+	\item \textbf{condition de Ore à gauche:} symétriquement.
+\end{itemize}
+	
+	La deuxième étape est de ne pas définir l'équivalence de dihomotopie en suivant l'idée d'étendre la notion d'homotopie, mais étendant celle de rétracts par déformations. Dans le cas classiques, ces retracts formalisent plus fidèlement ce que l'on appelle déformations continues et caractérisent complètement l'équivalence d'homotopie: deux espaces sont homotopiquement équivalents si et seulement si il existe un span de retracts par déformations entre eux. 
+	
+	En mélangeant ces deux ingrédients, il est possible de définir une notion d'équivalence de dihomotopie, l'\emph{équivalence inéssentielle}, qui a de bonnes propriétés: elle interagit bien avec les phénomènes de non-cancellation, son action sur la catégorie fondamentale correspond à une légère modification de la catégorie de composantes de \cite{goubault07}, elle est beaucoup moins rigide que l'équivalence utilisant les chemins réversibles. De manière plus précise, on dit qu'une paire $(X,A)$ de d-espace est un \textbf{FIDR} s'il existe une fonction continues $\map{H}{X}{\ine{X}}$ telle que:
+\begin{itemize}
+	\item[--] pour tout $x \in X$, $H(x)(0) = x$,
+	\item[--] pour tout $a \in A$ et $t \in [0,1]$, $H(a)(t) = a$,
+	\item[--] pour tout $x \in X$, $H(x)(1) \in A$,
+	\item[--] pour tout $t \in [0,1]$, la fonction $\map{H_t}{X}{X}$, $x \longmapsto H(x)(t)$ est une dimap,
+	\item[--] pour tout dichemin $\delta$ de $A$ de $z$ vers $H_1(x)$ il existe un dichemin $\gamma$ de $X$ de $y$ vers $x$ avec $H_1(y) = z$, et $H_1\circ\gamma$ et $\delta$ dihomotopes.
+\end{itemize}
+Symétriquement, on peut définir un \emph{PIDR} en inversant les rôles de $0$ et $1$ dans la définition de FIDR. On dit que deux d-espaces sont inéssentiellement équivalent s'il existe un zig-zag de FIDR et de PIDR entre eux.
+
+
+Un autre aspect à considérer quand on construit une théorie homotopique est le théorie des structures de modèle. Les structures de modèles est un modèle pour raisonner sur des objets modulo homotopies. L'un des résultats les plus importants dans cette théorie est ce qu'on appelle l'\emph{hypothèse d'homotopie}: la structure algébrique d'un espace topologique (avec ses chemins, homotopies, déformations d'ordre supérieur), peut être reflétée par les $\infty$-groupoïdes, c'est-à-dire, des catégories d'ordre supérieur avec des objets, des morphismes entre objets, des morphismes entre morphismes, etc, telle que toutes ces données soient inversibles. Dans le langage des structures de modèle, ceci peut être reformulé comme le fait qu'il existe une structure de modèle sur les espaces topologiques qui soit équivalente à une structure de modèle des $\infty$-groupoïdes. Ces $\infty$-groupoïdes sont modélisés par des ensembles simpliciaux un peu spéciaux, appelés complexes de Kan, qui satisfont des conditions de remplissage, qui modélisent le caractère inversible des données de la catégorie d'ordre supérieur. 
+
+Porter développa une théorie similaire dans le cas dirigé en ce basant cette fois-ci sur les $(\infty,1)$-catégories \cite{porter08,porter15}. L'idée est que contrairement aux espaces topologiques où les données de dimension $1$, à savoir, les chemins sont inversibles (modulo homotopie), ce n'est pas le cas des d-espaces. Il est donc plus naturel de les comparer aux $(\infty,1)$-catégories, catégories d'ordre supérieur où seules les données de dimension $\geq 2$ sont inversibles.
+
+Il existe différentes structures de modèle pour les $(\infty,1)$-catégories, mais celle qui semble la plus facile à relier aux d-espaces est la structure de Bergner \cite{bergner04}, où les $(\infty,1)$-catégories sont modélisées par des catégories simplicialement enrichies. Si cette théorie est jolie, elle ne peut être reliée qu'aux équivalence de dihomotopie qui utilise les chemins réversibles (par exemple, elle doit impliquer que les catégories fondamentales soient équivalentes). En réalité, on peut modifier un peu les constructions pour voir un lien avec les équivalences inéssentielles.
+
+La catégorie enrichie à considérer est ce qu'on appelle la catégorie des dichemins: ces objets sont les points, les morphismes sont les dichemins et la composition est la concaténation. On peut la voir comme une catégorie enrichie dans les espaces topologiques, excepté que la concaténation n'est pas associative... mais elle l'est modulo homotopie. C'est donc naturellement une catégorie enrichie dans la catégorie homotopique des espaces topologiques. Une equivalence de dihomotopie (version chemins réversibles) induit alors une (sorte d')équivalence de Dwyer-Kan entre les catégories de dichemins, ce qui n'est pas le cas des autres types d'équivalence. L'idée est donc de changer un peu les équivalences sur les catégories enrichies pour relier cette théorie à d'autres types d'équivalences de dihomotopie.
+
+Tout d'abord, au lieu de demander à ce que les catégories fondamentales soient équivalentes, on peut demander à ce que les catégories de composantes le soient. Mais cela ne suffit pas. Une équivalence de Dwyer-Kan demande à ce que les fonctions qui, à un dichemin $\gamma$, associe $f\circ\gamma$ soient toutes des équivalence d'homotopie, ce qui est beaucoup trop fort ! En effet, pour être équivalent à un point, cela demande en particulier que tous les espaces de chemins soient non vides, ce qui n'arrive jamais dans les po-espaces. Il s'agit donc de gérer un peu mieux les ensembles vides de dichemins. C'est pourquoi, il ne faut pas voir la catégorie de dichemins comme une catégorie enrichie, mais comme une catégorie partiellement enrichie, i.e., dans laquelle les ensembles vides de morphismes sont gérés à part.
+
+Avec ces deux nouvelles idées, il est donc possible de définir une notion d'\emph{équivalence inéssentielle} entre catégorie partiellement enrichie et de montrer qu'une équivalence inéssentielle entre d-espaces induit une équivalence inéssentielle entre les catégories (partiellement enrichie) de dichemins.
+
+	
+	
+	
+	\section*{Théories homologiques pour les d-espaces}
+
+
+Un autre invariant intéressant en topologie algébrique est l'homologie. Intuitivement, c'est une collection de modules (typiquement, des groupes abéliens ou des espaces vectoriels), qui comptent le nombre de trous de l'espace. Même si cet invariant n'est pas complet, au sens où il existe des espaces qui ont la même homologie mais qui ne sont pas homotopiquement équivalents, l'homologie a néanmoins de très bonnes propriétés. Tout d'abord, elle est complète dans certains cas, ou tout du moins, elle donne suffisamment d'informations sur l'espace dans de nombreux cas. Ensuite, elle est calculable: lorsque l'espace est finiment présenté, typiquement à l'aide d'ensembles simpliciaux, il est possible de calculer une présentation finie de l'homologie et de tester que des espaces ont la même homologie à partir de ces présentations. Ceci n'est pas possible avec les théories homotopiques. Une autre propriété intéressante est que ce calcul peut souvent se faire de manière modulaire: il est parfois possible de décrire l'homologie d'un espace à partir d'homologies d'espaces plus simples. Cette dernière propriété peut se décrire d'un point de vue purement algébrique: l'homologie est un processus algébrique général de calcul de défauts d'exactitude, et la modularité est juste un cas particulier d'exactitude. C'est le genre de propriétés décrites dans les axiomes d'Eilenberg-Steenrod.
+
+Définir une théorie homologique pour les d-espaces est un challenge ardu. De nombreuses tentatives ont été faites ces vingt dernières années. Certaines d'entre elles fonctionnent de la façon suivante. L'idée est de séparer la topologie de l'ordre: on commence par regarder le d-espace comme un espace topologique, on en prend son homologie classique, puis on ajoute une structure dessus provenant de la structure dirigée (typiquement, un ordre partiel, ou une relation plus générale, cf. \cite{grandis09,kahl14}). L'inconvénient de cette méthode est qu'elle n'est pas assez précise. Reprenons l'exemple de la boîte d'allumettes. On a vu précédemment que celle-ci avait un défaut de dihomotopie puisque des dichemins étaient non dihomotopes. Par contre, comme espace topologique, la boîte est triviale, contractile: il est possible de la déformer continûment en un point (cf. la figure plus haut). D'un point de vue homologique, cela entraine que son homologie classique est triviale, et que donc ces propositions d'homologies dirigées sont aussi triviales. C'est en fait un challenge d'observer d'un point de vue purement algébrique ce genre de défauts de dihomotopie. Dans cette thèse, nous proposons une (en réalité, des, mais qui seront toutes équivalentes) théories homologies pour les d-espaces.
+
+L'idée de base de notre homologie est simple: il s'agit de regarder les espaces de dichemins (ou de traces) d'un point de vue de la topologie algébrique classique et de voir comment ceux-ci évoluent avec le temps, c'est-à-dire par extensions. Par exemple, pour distinguer deux espaces de cette forme:
+	\begin{figure}[H]
+		\begin{center}
+    			\input{images/DirHom/SuTraExa}
+  		\end{center}
+	\end{figure}
+\noindent espaces provenants de réalisations géométriques de systèmes de vraie concurrence, il est nécessaire de regarder tous les espaces de traces. En particulier, si on ne regarde que les espaces de traces maximales, on observe que ceux-ci sont homotopiquement équivalents (grossièrement, ils sont équivalents à un espace discret à six points, c'est-à-dire, il y a six classes d'équivalences d'exécutions maximales modulo la relation d'équivalence qui permute les actions indépendantes). Par contre, si par exemple l'espace de traces dans l'espace de gauche:
+		\begin{figure}[H]
+		\begin{center}
+    			\input{images/DirHom/SuTraExa2}
+  		\end{center}
+	\end{figure}
+\noindent on observe que celui-ci est équivalent à un espace à quatre points lorsque aucun espace de trace de l'espace de droite a ce type d'homotopie.
+	
+	D'un point de vue un peu plus formel, notre homologie est définie comme une collection de diagramme à valeurs dans les modules, c'est-à-dire de foncteurs à valeurs dans les modules, mais dont le domaine n'est pas fixe. Etant donné un d-espace $X$, le domaine (commun) $\mathcal{F}(X)$ de ces foncteurs sera la catégorie dont les objets sont les traces et dont les morphismes sont les \emph{extensions}, à savoir les paires de traces qui ``étendent'' une trace donnée. Le \emph{$n$-ième système naturel d'homologie de $X$} est alors le foncteur $\map{\nathomolbw{n}{X}}{\fac{X}}{\modu{\R}}$ qui associe à chaque trace de $a$ vers $b$, le $n-1$ module d'homologie de l'espace des traces entre $a$ et $b$.
+	
+	Par exemple, considérant le d-espace suivant:
+		\begin{figure}[H]
+		\begin{center}
+    			\input{images/DirHom/APB}
+  		\end{center}
+	\end{figure}
+\noindent qui est le recollement de deux segments dirigés, le domaine des diagrammes d'homologie à cette forme:
+		\begin{figure}[H]
+		\begin{center}
+    			\input{images/DirHom/FacExa}
+  		\end{center}
+	\end{figure}
+\noindent et l'image du premier diagramme d'homologie a cette forme:
+	\begin{figure}[H]
+		\begin{center}
+    			\input{images/DirHom/NHomExa}
+  		\end{center}
+	\end{figure}
+
+L'homologie définie de cette façon a de très bonnes propriétés: elle est fonctorielle, elle peut être reliée a une notion de diagrammes d'homotopie (définit exactement de la même façon, en remplaçant les modules d'homologie par les groupes d'homotopie) à l'aide d'un théorème à la Hurewicz, l'homologie d'un point est nulle (axiome de la dimension), l'homologie préserve les coproduits (axiome de l'additivité). En ce qui concerne les propriétés d'exactitude (et donc de modularité), les choses sont plus compliquées. La catégorie des diagrames à valeurs dans les modules n'est pas abélienne, et donc la théorie générale des suites exactes ne s'applique ici. Il faut donc se tourner vers des théories non-abéliennes, comme par exemple la théorie des catégories homologiques et modulaires de \cite{grandis91,grandis91b}. Il s'avère que la théorie des diagrammes à valeurs dans les modules est semi-exacte (i.e., qu'on peut parler d'objets et morphismes nuls, de noyaux, de conoyaux, d'images et de suites exactes, c'est-à-dire, tout ce dont on a besoin pour parler d'homologie !) et homologique (c'est-à-dire que la théorie homologique définie purement algébriquement à partir des complexes de chaînes fait sens). Dans une telle catégorie, les théorèmes d'exactitude du type ``une suite exacte courte en complexes de chaînes induit une suite exacte longue en homologie'' tiennent presque. Ils deviennent ``une suite exacte courte induit une suite longue d'ordre 2, qui est exacte à certains endroits, et partout ailleurs modulo des conditions''. Les dites conditions sont toujours satisfaites si et seulement si la catégorie est modulaire, ce qui n'est pas le cas ici. Il est néanmoins possible de construire certaines suites exactes longues en homologie, ce qui est déjà suffisant pour espérer des théorèmes de modularité.
+
+Une dernière propriété reste: la calculabilité. Strictement parlant, l'homologie naturelle n'est pas calculable: le domaine des foncteurs n'est quasiment jamais dénombrable et il n'y aucun espoir de le décrire à isomorphisme près. Cependant, rien ne dit qu'il faille regarder les diagrammes à isomorphismes près ! C'est l'une des idées nouvelles décrites dans cette thèse: ce qui nous intéresse est l'évolution de l'espace des traces au court du temps, ce qui est beaucoup plus faible que l'isomorphisme des diagrammes. L'idée est très similaire aux bisimulations dans les systèmes concurrents. Ce n'est pas l'isomorphisme des systèmes qui nous intéresse mais le fait que les systèmes évoluent de la même façon. Il est donc naturel que des équivalences de type bisimulations apparaissent dans cette théorie homologique. La notion de bisimilarité que nous introduisons ici peut se voir de nombreuses façons. Initialement, elle est décrite à l'aide de la théorie générale de la bisimilarité en termes de morphismes ouverts de \cite{joyal96}. Ces morphismes ouverts répondent à la question suivante: comment peut-on assurer qu'un morphisme implique l'existence d'une bisimulation entre des systèmes ? La réponse générale est ``lorsque ce morphisme relève les exécutions''. Il est alors possible de voir les choses dans l'autre sens: définir une classe de morphismes ayant des propriétés de relèvements par rapport à ce que l'on considère comme des exécutions et définir la bisimilarité comme l'existence d'un zig-zag (très souvent, un span suffit) de tels morphismes. C'est de cette façon que la bisimilarité dans les diagrammes est définie: comme l'existence d'un span de morphismes de diagrammes qui ont des propriétés de relèvements par rapport aux diagrammes finis linéaires. Cette définition est naturelle dans l'étude homologique et en particulier pour la calculabilité. Etant donné un complexe cubique euclidien fini (typiquement, le genre de d-espaces finiment présentés obtenus comme réalisation géométrique de systèmes de la vraie concurrence), il est possible de définir un diagramme fini. Ce diagramme est une sorte de discrétisation de l'homologie naturelle et il est possible de construire un morphisme de l'homologie naturelle vers cette discrétisation. Ce morphisme est un exemple typique de morphisme ouvert dans ce contexte. Un autre exemple de morphisme ouvert est un morphisme d'oubli d'informations non nécessaire: le domaine de l'homologie naturelle est une catégorie des traces et extensions alors que la construction du diagramme n'utilise que les points extrémaux des traces et les extensions. Il est donc possible de construire une théorie homologique en définissant les diagrammes sur cette catégorie des paires de points et extensions (ce qui donne des bimodules), et il y a un morphisme ouvert naturel d'oubli de l'homologie naturelle vers l'homologie de bimodules.
+
+Pour résumer, en utilisant cette théorie de la bisimilarité dans les diagrammes, il est possible de construire des diagrammes finis (sous condition que le d-espace soit finiment présenté) bisimilaires à l'homologie naturelle. Pour la calculabilité, il reste à savoir si la bisimilarité est elle même décidable. La définition en termes de morphismes ouverts n'est pas très pratique en ce sens. Cependant, il est possible de donner des caractérisations plus praticables. La première utilise des relations proches des bisimulations de structures d'évènements \cite{rabinovitch88}. Dans le cas où l'homologie est calculée dans les réels, on se retrouve à comparer des diagrammes dont le domaine est un poset fini et est à valeurs dans les espaces vectoriels de dimension finie. Décider la bisimilarité devient alors un problème d'existence de matrices inversibles, ce qui peut s'encoder dans la théorie existentielle de réelle, le tout en EXSPACE. 
+
+La bisimilarité peut aussi être décrite logiquement, à la manière de \cite{hennessy80}. Deux diagrammes sont bisimilaires si et seulement si ils vérifient les mêmes formules d'une logique qui décrit intuitivement les évolutions possibles d'un diagramme. Une formule dans cette logique peut alors servir de certificat que deux diagrammes ne sont pas bisimilaires. Dans le même cas que précédemment, savoir si une formule positive (sans négation) est satisfaite par un diagramme est décidable en PSPACE.
+
+Au total, il est possible de décider si deux d-espaces finiment présentés ont la même homologie (modulo bisimilarité).
+
+Pour terminer, il reste à faire le lien avec la théorie homotopique. On montre que dans le cas finiment présenté, si deux d-espaces sont inéssentiellement équivalents, alors leurs homologies sont bisimilaires. L'homologie naturelle est donc, au moins pour les espaces sur lesquels on peut faire des calculs, un invariant de l'équivalence inésentielle.
+
+
+

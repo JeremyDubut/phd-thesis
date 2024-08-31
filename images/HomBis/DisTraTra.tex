@@ -1,0 +1,41 @@
+  \begin{tikzpicture}[auto,scale = 1.2]
+    \draw [fill = gray!25, draw = gray!75] (0,0) rectangle (1.4,1.4);
+    \node (c) at (0.7,0.7) {$A$};
+    \node   (x1) at (-0.2,-0.2) {\footnotesize{$s$}};
+    \node  (x2) at (1.6,-0.2) {\footnotesize{$s'$}};
+    \node  (x3) at (-0.2,1.6) {\footnotesize{$t$}};
+    \node  (x4) at (1.6,1.6) {\footnotesize{$t'$}};
+    \draw [thick] (0,0) to node [swap] {\footnotesize{$a$}} (1.4,0);
+    \draw [thick] (0,0) to node {\footnotesize{$b$}} (0,1.4);
+    \draw [thick] (1.4,0) to node [swap] {\footnotesize{$c$}} (1.4,1.4);
+    \draw [thick] (0,1.4) to node {\footnotesize{$d$}} (1.4,1.4);
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[auto,scale = 1.2]
+    \draw [fill = gray!25, draw = gray!75] (0,0) rectangle (1.4,1.4);
+    \draw [thick] (0,0) to node [swap] {\footnotesize{$a$}} (1.4,0);
+    \draw [thick] (0,0) to node {\footnotesize{$b$}} (0,1.4);
+    \draw [thick] (1.4,0) to node [swap] {\footnotesize{$c$}} (1.4,1.4);
+    \draw [thick] (0,1.4) to node {\footnotesize{$d$}} (1.4,1.4);
+    \draw [very thick,red] (0,0.7) to (0.7,0.7);
+    \draw [very thick,red] (0.7,0.7) to (1.4,1.4);
+    \node (c) at (0.7,0.7) {$A$};
+    \node   (x1) at (-0.2,-0.2) {\footnotesize{$s$}};
+    \node  (x2) at (1.6,-0.2) {\footnotesize{$s'$}};
+    \node  (x3) at (-0.2,1.6) {\footnotesize{$t$}};
+    \node  (x4) at (1.6,1.6) {\footnotesize{$t'$}};
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[auto,scale = 1.2]
+    \draw [fill = gray!25, draw = gray!75] (0,0) rectangle (1.4,1.4);
+    \draw [thick] (0,0) to node [swap] {\footnotesize{$a$}} (1.4,0);
+    \draw [thick] (0,0) to node {\footnotesize{$b$}} (0,1.4);
+    \draw [thick] (1.4,0) to node [swap] {\footnotesize{$c$}} (1.4,1.4);
+    \draw [thick] (0,1.4) to node {\footnotesize{$d$}} (1.4,1.4);
+    \draw[red,very thick] (0,0.3) .. controls (0.8,0.4) and (0.6,0.67) .. (1.4,1.4);
+    \node (c) at (0.7,0.7) {$A$};
+    \node   (x1) at (-0.2,-0.2) {\footnotesize{$s$}};
+    \node  (x2) at (1.6,-0.2) {\footnotesize{$s'$}};
+    \node  (x3) at (-0.2,1.6) {\footnotesize{$t$}};
+    \node  (x4) at (1.6,1.6) {\footnotesize{$t'$}};
+  \end{tikzpicture}

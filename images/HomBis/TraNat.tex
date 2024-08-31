@@ -1,0 +1,12 @@
+
+    \begin{tikzpicture}
+      \node (Fx') at (1,0) {$H_n(\tracep{X}{a'}{b'})$};
+      \node (Fx) at (1,2.5) {$H_n(\tracep{X}{a}{b})$};
+      \node (Gy') at (7,0) {$H_n(\tracep{X}{\widehat{\carrier(a')}}{\widehat{\carrier(b')}}$};
+      \node (Gy) at (7,2.5) {$H_n(\tracep{X}{\widehat{\carrier(a)}}{\widehat{\carrier(b)}}$};
+      \path[->,font=\scriptsize] 
+      		(Fx) edge node[left]{$H_n(\tra{\alpha \star \_ \star \beta})$} (Fx')
+      		(Fx) edge node[above]{$\sigma_{\tra{\gamma}}$} (Gy)
+      		(Fx') edge node[below]{$\sigma_{\tra{\alpha\star\gamma\star\beta}}$} (Gy')
+      		(Gy) edge node[right]{$H_n(\tra{\widehat{\carrier(\alpha)} \star \_ \star \widehat{\carrier(\beta)}})$} (Gy');
+    \end{tikzpicture}

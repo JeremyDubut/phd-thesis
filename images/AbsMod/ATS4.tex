@@ -1,0 +1,19 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (q) at (0,0) {$q$};
+	\node (q') at (0,3) {$q'$};
+	\node (p) at (3,0) {$p$};
+	\node (q'') at (3,3) {$q''$};
+	
+	
+	\path[->,font=\scriptsize]
+		(q) edge node[left]{$e$} (q')
+		(q') edge node[above]{$e'$} (q'');
+		
+	\path[->, dotted, font=\scriptsize]
+		(q) edge node[below]{$e'$} (p)
+		(p) edge node[right]{$e$} (q'');
+			
+\end{tikzpicture}
+

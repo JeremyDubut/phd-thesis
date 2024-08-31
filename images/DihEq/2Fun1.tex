@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=1]
+		
+	\node (fcp) at (0,0) {$F(c')$};
+	\node (gcp) at (4,0) {$G(c')$};
+	\node (fc) at (0,3) {$F(c)$};
+	\node (gc) at (4,3) {$G(c)$};
+	
+	\path[->,font=\scriptsize]
+		(fc) edge node[above]{$[(F(c);\sigma_c;G(c))]$} (gc)
+		(fcp) edge node[below]{$[(F(c');\sigma_{c'};G(c'))]$} (gcp)
+		(fc) edge node[left]{$[(F(c);F(f);F(c'))]$} (fcp)
+		(gc) edge node[right]{$[(G(c);G(f);G(c'))]$} (gcp);
+			
+\end{tikzpicture}

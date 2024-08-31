@@ -1,0 +1,357 @@
+\usepackage{amsmath,amssymb}             % AMS Math
+% \usepackage[french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[left=0.9in,right=0.8in,top=0.8in,bottom=0.8in,includefoot,includehead,headheight=13.6pt]{geometry}
+\renewcommand{\baselinestretch}{1.05}
+
+%\renewcommand{\thechapter}{\Roman{chapter}}
+
+% Table of contents for each chapter
+
+\usepackage[nottoc, notlof, notlot]{tocbibind}
+\usepackage{minitoc}
+\setcounter{minitocdepth}{2}
+\mtcindent=15pt
+% Use \minitoc where to put a table of contents
+
+\usepackage{aecompl}
+
+% Glossary / list of abbreviations
+
+\usepackage[intoc]{nomencl}
+\renewcommand{\nomname}{List of Abbreviations}
+
+\makenomenclature
+
+% My pdf code
+
+\usepackage{ifpdf}
+
+\ifpdf
+  \usepackage[pdftex]{graphicx}
+  \DeclareGraphicsExtensions{.jpg}
+  \usepackage[a4paper,pagebackref,hyperindex=true]{hyperref}
+\else
+  \usepackage{graphicx}
+  \DeclareGraphicsExtensions{.ps,.eps}
+  \usepackage[a4paper,dvipdfm,pagebackref,hyperindex=true]{hyperref}
+\fi
+
+\graphicspath{{.}{images/}}
+
+% nicer backref links
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+\ifcase #1 %
+(Not cited.)%
+\or
+(Cited on page~#2.)%
+\else
+(Cited on pages~#2.)%
+\fi}
+\renewcommand*{\backrefsep}{, }
+\renewcommand*{\backreftwosep}{ and~}
+\renewcommand*{\backreflastsep}{ and~}
+
+% Links in pdf
+\usepackage{color}
+\definecolor{linkcol}{rgb}{0,0,0.4} 
+\definecolor{citecol}{rgb}{0.5,0,0} 
+\definecolor{titlepage}{rgb}{0.5,0,0}
+
+% Change this to change the informations included in the pdf file
+
+% See hyperref documentation for information on those parameters
+
+\hypersetup
+{
+bookmarksopen=true,
+pdftitle="To define",
+pdfauthor="Jérémy DUBUT", 
+pdfsubject="Directed algebraic topology", %subject of the document
+%pdftoolbar=false, % toolbar hidden
+pdfmenubar=true, %menubar shown
+pdfhighlight=/O, %effect of clicking on a link
+colorlinks=true, %couleurs sur les liens hypertextes
+pdfpagemode=None, %aucun mode de page
+pdfpagelayout=SinglePage, %ouverture en simple page
+pdffitwindow=true, %pages ouvertes entierement dans toute la fenetre
+linkcolor=linkcol, %couleur des liens hypertextes internes
+citecolor=citecol, %couleur des liens pour les citations
+urlcolor=linkcol %couleur des liens pour les url
+}
+
+% definitions.
+% -------------------
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% Some useful commands and shortcut for maths:  partial derivative and stuff
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\def\abs{\operatorname{abs}}
+\def\argmax{\operatornamewithlimits{arg\,max}}
+\def\argmin{\operatornamewithlimits{arg\,min}}
+\def\diag{\operatorname{Diag}}
+\newcommand{\eqRef}[1]{(\ref{#1})}
+%\newcommand\bf[1]{\textbf{#1}}
+\newcommand\map[3]{#1 : #2 \longrightarrow #3}
+\newcommand\pathto[3]{#1 : #2 \leadsto #3}
+\newcommand\tr{\textbf{Tr(}\Sigma\textbf{)}}
+\newcommand\astr{\textbf{ATr(}\Sigma\textbf{)}}
+\newcommand\dessin{\textcolor{red}{FAIRE UN DESSIN}}
+\newcommand\br{\textbf{Br(}\Sigma\textbf{)}}
+\newcommand\setcat{\textbf{Set}}
+\newcommand\group{\textbf{Gr}}
+\newcommand\sset{\textbf{SSet}}
+\newcommand\C{\mathcal{C}}
+\newcommand\D{\mathcal{D}}
+\newcommand\A{\mathcal{A}}
+\newcommand\M{\mathcal{M}}
+\newcommand\PP{\mathcal{P}}
+\newcommand\E{\mathcal{E}}
+\newcommand\R{\mathcal{R}}
+\newcommand\X{\mathcal{X}}
+\newcommand\V{\mathcal{V}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\QQ{\mathbb{Q}}
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\diagr[1]{\textbf{Diag(}#1\textbf{)}}
+\newcommand\diagriso[1]{\textbf{IsoDiag(}#1\textbf{)}}
+\newcommand\podiagr[1]{\textbf{PoDiag(}#1\textbf{)}}
+\newcommand\enrcat[1]{\textbf{Cat(}#1\textbf{)}}
+\newcommand\pecat[1]{\textbf{PeCat(}#1\textbf{)}}
+\newcommand\nat{\mathbb{N}}
+\newcommand\Ab{\textbf{Ab}}
+\newcommand\cat{\textbf{Cat}}
+\newcommand\catpair{\textbf{Cat}_2}
+\newcommand\grpd{\textbf{Grpd}}
+\newcommand\Unf[1]{\text{Unf}(#1)}
+\newcommand\Unfo{\text{Unf}}
+\newcommand\ob[1]{\text{Ob}(#1)}
+\newcommand\PN{\textbf{PN(}\Sigma\textbf{)}}
+\newcommand\hotop{\textbf{HoTop}}
+\newcommand\topo{\textbf{Top}}
+\newcommand\geo[1]{\text{Geom}(#1)}
+\newcommand\psh[1]{\textbf{PSh}(#1)}
+\newcommand\pathsp[1]{\text{P}(#1)}
+\newcommand\pathspp[3]{\text{P}(#1)(#2,#3)}
+\newcommand\potop{\textbf{POTop}}
+\newcommand\lpotop{\textbf{LocPOTop}}
+\newcommand\prestr{\textbf{PreStr}}
+\newcommand\str{\textbf{Str}}
+\newcommand\dirseg{\overrightarrow{[0,1]}}
+\newcommand\dirsegrev{\overleftarrow{[0,1]}}
+\newcommand\revseg{\widetilde{[0,1]}}
+\newcommand\dip[1]{\overrightarrow{\text{P}}(#1)}
+\newcommand\rev[1]{\widetilde{\text{P}}(#1)}
+\newcommand\dipp[3]{\overrightarrow{\text{P}}(#1)(#2,#3)}
+\newcommand\dtop{\textbf{dTop}}
+\newcommand\cdtop{\textbf{CdTop}}
+\newcommand\hstr{\textbf{HStr}}
+\newcommand\matchbox{\mathbb{M}_\Box}
+\newcommand\funcat[1]{\overrightarrow{\pi_1}(#1)}
+\newcommand\loca[2]{#1[#2^{-1}]}
+\newcommand\ine[1]{\mathfrak{I}(#1)}
+\newcommand\spa[5]{#1 \xleftarrow{~#2~} #3 \xrightarrow{~#4~} #5}
+\newcommand\comcat[1]{\overrightarrow{\pi_0}(#1)}
+\newcommand\topp{\textbf{Top}_2}
+\newcommand\trace[1]{\overrightarrow{T}(#1)}
+\newcommand\ttrace[1]{\overrightarrow{\mathbb{T}}(#1)}
+\newcommand\tracep[3]{\overrightarrow{T}(#1)(#2,#3)}
+\newcommand\tra[1]{\langle#1\rangle}
+\newcommand\pale[3]{#1 : #2 \leadsto #3}
+\newcommand\modu[1]{\textbf{Mod}(#1)}
+\newcommand\chain[1]{\textbf{C}_\bullet(#1)}
+\newcommand\env[1]{\mathcal{E}(#1)}
+\newcommand\tracehm[1]{\overrightarrow{BT}(#1)}
+\newcommand\fac[1]{\mathcal{F}(#1)}
+\newcommand\tracebw[1]{\overrightarrow{NT}(#1)}
+\newcommand\nathomot[2]{\overrightarrow{\Pi}_{#1}(#2)}
+\newcommand\nathomolbw[2]{\overrightarrow{NH}_{#1}(#2)}
+\newcommand\nathomolhm[2]{\overrightarrow{BH}_{#1}(#2)}
+\newcommand\dipnathomolhm[2]{\overrightarrow{DBH}_{#1}(#2)}
+\newcommand\chainbw[1]{\overrightarrow{NC}(#1)}
+\newcommand\chainhm[1]{\overrightarrow{BC}(#1)}
+\newcommand\Lim[1]{\text{Lim}(#1)}
+\newcommand\id{\text{id}}
+\newcommand\ke[1]{\text{ker }#1}
+\newcommand\Ke[1]{\text{Ker }#1}
+\newcommand\cok[1]{\text{cok }#1}
+\newcommand\Cok[1]{\text{Cok }#1}
+\newcommand\Ima[1]{\text{Im }#1}
+\newcommand\ima[1]{\text{im }#1}
+\newcommand\coima[1]{\text{coim }#1}
+\newcommand\Coima[1]{\text{Coim }#1}
+\newcommand\diagrmod[1]{\diagr{\modu{#1}}}
+\newcommand\quot[2]{{#1}/{#2}}
+\newcommand\digeom[1]{\overrightarrow{Geom}(#1)}
+\newcommand\disnathomolhm[2]{\overrightarrow{DBH}_{#1}(#2)}
+\newcommand\disnathomolbw[2]{\overrightarrow{DNH}_{#1}(#2)}
+\newcommand\carrier{\text{Car}}
+\newcommand\subd[1]{\text{Sub}(#1)}
+\newcommand\dicir{\overrightarrow{S^1}}
+\newcommand\fib{\text{Fib}}
+\newcommand\cof{\text{Cof}}
+\newcommand\sing{\text{Sing}}
+\newcommand\pspan[5]{#2 \xleftarrow{~~ #4 ~~} #1 \xrightarrow{~~ #5 ~~} #3}
+\newcommand\presh[1]{[#1^{op},Set]}
+\newcommand\yon[0]{\mathfrak{Y}}
+\newcommand\grp[0]{\textbf{Grpd}_\star}
+\newcommand\I[0]{\mathcal{I}}
+\newcommand\tre[2]{\textbf{Tree(}#1,#2\textbf{)}}
+
+
+
+%\input{AckFor}
+
+
+
+\definecolor{ultramarineblue}{rgb}{0.39,0.58,0.93}
+\definecolor{fieryorange}{RGB}{236,117,40}
+\definecolor{blackorkgreen}{rgb}{0.13,0.55,0.13}
+\definecolor{badmoonyellow}{rgb}{1,0.84,0}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{shuffle}
+
+\renewcommand\qedsymbol{$.QED.$}
+
+
+\theoremstyle{plain}
+\newtheorem{lemme}{Lemma} 
+\newtheorem{theo}{Theorem}
+\newtheorem{conj}{Conjecture} 
+\newtheorem{prop}{Proposition}    
+\newtheorem{coro}{Corollary}
+\theoremstyle{definition}
+\newtheorem{defi}{Definition}
+\newtheorem{nota}{Notation}
+\newtheorem{exe}{Example}
+\newtheorem{exes}{Exemples}
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{shapes}
+\usetikzlibrary{matrix}
+\usepackage{xifthen}
+\tikzset{snake it/.style={decorate, decoration=snake}}
+\usepackage[hang,small]{caption}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+%\usepackage{algorithm,algorithmic}
+
+\usepackage{rotating}                    % Sideways of figures & tables
+%\usepackage{bibunits}
+%\usepackage[sectionbib]{chapterbib}          % Cross-reference package (Natural BiB)
+%\usepackage{natbib}                  % Put References at the end of each chapter
+                                         % Do not put 'sectionbib' option here.
+                                         % Sectionbib option in 'natbib' will do.
+\usepackage{fancyhdr}                    % Fancy Header and Footer
+
+% \usepackage{txfonts}                     % Public Times New Roman text & math font
+  
+%%% Fancy Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fancy Header Style Options
+
+\pagestyle{fancy}                       % Sets fancy header and footer
+\fancyfoot{}                            % Delete current footer settings
+
+%\renewcommand{\chaptermark}[1]{         % Lower Case Chapter marker style
+%  \markboth{\chaptername\ \thechapter.\ #1}}{}} %
+
+%\renewcommand{\sectionmark}[1]{         % Lower case Section marker style
+%  \markright{\thesection.\ #1}}         %
+
+\fancyhead[LE,RO]{\bfseries\thepage}    % Page number (boldface) in left on even
+% pages and right on odd pages
+\fancyhead[RE]{\bfseries\nouppercase{\leftmark}}      % Chapter in the right on even pages
+\fancyhead[LO]{\bfseries\nouppercase{\rightmark}}     % Section in the left on odd pages
+
+\let\headruleORIG\headrule
+\renewcommand{\headrule}{\color{black} \headruleORIG}
+\renewcommand{\headrulewidth}{1.0pt}
+\usepackage{colortbl}
+\arrayrulecolor{black}
+
+\fancypagestyle{plain}{
+  \fancyhead{}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\usepackage{algorithm}
+%\usepackage[noend]{algorithmic}
+\usepackage{algpseudocode}
+
+%%% Clear Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clear Header Style on the Last Empty Odd pages
+\makeatletter
+
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+  \hbox{}%
+  \thispagestyle{empty}%              % Empty header styles
+  \newpage%
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+\makeatother
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Prints your review date and 'Draft Version' (From Josullvn, CS, CMU)
+\newcommand{\reviewtimetoday}[2]{\special{!userdict begin
+    /bop-hook{gsave 20 710 translate 45 rotate 0.8 setgray
+      /Times-Roman findfont 12 scalefont setfont 0 0   moveto (#1) show
+      0 -12 moveto (#2) show grestore}def end}}
+% You can turn on or off this option.
+% \reviewtimetoday{\today}{Draft Version}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\newenvironment{maxime}[1]
+{
+\vspace*{0cm}
+\hfill
+\begin{minipage}{0.5\textwidth}%
+%\rule[0.5ex]{\textwidth}{0.1mm}\\%
+\hrulefill $\:$ {\bf #1}\\
+%\vspace*{-0.25cm}
+\it 
+}%
+{%
+
+\hrulefill
+\vspace*{0.5cm}%
+\end{minipage}
+}
+
+\let\minitocORIG\minitoc
+\renewcommand{\minitoc}{\minitocORIG \vspace{1.5em}}
+
+\usepackage{multirow}
+\usepackage{slashbox}
+
+\newenvironment{bulletList}%
+{ \begin{list}%
+	{$\bullet$}%
+	{\setlength{\labelwidth}{25pt}%
+	 \setlength{\leftmargin}{30pt}%
+	 \setlength{\itemsep}{\parsep}}}%
+{ \end{list} }
+
+\newtheorem{definition}{Définition}
+\renewcommand{\epsilon}{\varepsilon}
+
+% centered page environment
+
+\newenvironment{vcenterpage}
+{\newpage\vspace*{\fill}\thispagestyle{empty}\renewcommand{\headrulewidth}{0pt}}
+{\vspace*{\fill}}
+

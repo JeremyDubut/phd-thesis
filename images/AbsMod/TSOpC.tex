@@ -1,0 +1,20 @@
+
+\begin{tikzpicture}[scale=0.8]
+		
+	\node (B') at (0,0) {$B'$};
+	\node (B) at (0,3) {$B$};
+	\node (S) at (3,0) {$S$};
+	\node (T) at (3,3) {$T$};
+	
+	
+	\path[->,font=\scriptsize]
+		(B) edge node[left]{$\iota$} (B')
+		(B') edge node[below]{$b'$} (S)
+		(T) edge node[right]{$f$} (S)
+		(B) edge node[above]{$b$} (T);
+		
+	\path[->, font = \scriptsize, dotted]
+		(B') edge node[above]{$\theta$} (T);
+			
+\end{tikzpicture}
+

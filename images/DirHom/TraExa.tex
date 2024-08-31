@@ -1,0 +1,71 @@
+\begin{tikzpicture}[auto,scale = 1]
+\draw (0,0) rectangle (3,3);
+\draw [fill = gray!50,draw = gray!50] (1,1) rectangle (2,2);
+\node (uf) at (3.5,1) {};
+\node (0) at (-0.3,-0.2) {$(0,0)$};
+\node (1) at (3.3,3.2) {$(1,1)$};
+\draw [dotted] (1,0) to (1,3);
+\draw [dotted] (2,0) to (2,3);
+\draw [dotted] (0,1) to (3,1);
+\draw [dotted] (0,2) to (3,2);
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw[color = white] (0,-1) rectangle (1.5,-1.1);
+\end{tikzpicture}
+\begin{tikzpicture}[thick,scale=3]
+	\node (0) at (-0.1,-0.07) {$(0,0,0)$};
+	\node (1) at (1.4,1.37) {$(1,1,1)$};
+    \coordinate (A1) at (0, 0);
+    \coordinate (A2) at (0, 1);
+    \coordinate (A3) at (1, 1);
+    \coordinate (A4) at (1, 0);
+    \coordinate (B1) at (0.3, 0.3);
+    \coordinate (B2) at (0.3, 1.3);
+    \coordinate (B3) at (1.3, 1.3);
+    \coordinate (B4) at (1.3, 0.3);
+
+    \draw[very thick] (A1) -- (A2);
+    \draw[very thick] (A2) -- (A3);
+    \draw[very thick] (A3) -- (A4);
+    \draw[very thick] (A4) -- (A1);
+
+    \draw[dashed] (A1) -- (B1);
+    \draw[dashed] (B1) -- (B2);
+    \draw[very thick] (A2) -- (B2);
+    \draw[very thick] (B2) -- (B3);
+    \draw[very thick] (A3) -- (B3);
+    \draw[very thick] (A4) -- (B4);
+    \draw[very thick] (B4) -- (B3);
+    \draw[dashed] (B1) -- (B4);
+    
+    \coordinate (A13) at (0.33, 0.33);
+    \coordinate (A23) at (0.33, 0.83);
+    \coordinate (A33) at (0.83, 0.83);
+    \coordinate (A43) at (0.83, 0.33);
+    \coordinate (B13) at (0.48, 0.48);
+    \coordinate (B23) at (0.48, 0.98);
+    \coordinate (B33) at (0.98, 0.98);
+    \coordinate (B43) at (0.98, 0.48);
+
+    \draw[very thick,color = gray] (A13) -- (A23);
+    \draw[very thick,color = gray] (A23) -- (A33);
+    \draw[very thick,color = gray] (A33) -- (A43);
+    \draw[very thick,color = gray] (A43) -- (A13);
+
+    \draw[dashed,color = gray] (A13) -- (B13);
+    \draw[dashed,color = gray] (B13) -- (B23);
+    \draw[very thick,color = gray] (A23) -- (B23);
+    \draw[very thick,color = gray] (B23) -- (B33);
+    \draw[very thick,color = gray] (A33) -- (B33);
+    \draw[very thick,color = gray] (A43) -- (B43);
+    \draw[very thick,color = gray] (B43) -- (B33);
+    \draw[dashed,color = gray] (B13) -- (B43);
+    
+    \draw[fill=gray,opacity = 0.2] (A13) -- (B13) -- (B43) -- (A43);
+    \draw[fill=gray,opacity = 0.2] (A13) -- (A23) -- (A33) -- (A43);
+    \draw[fill=gray,opacity = 0.2] (A13) -- (A23) -- (B23) -- (B13);
+    \draw[fill=gray,opacity = 0.2] (B13) -- (B23) -- (B33) -- (B43);
+    \draw[fill=gray,opacity = 0.2] (A33) -- (B33) -- (B43) -- (A43);
+    \draw[fill=gray,opacity = 0.2] (A23) -- (B23) -- (B33) -- (A33);
+    
+\end{tikzpicture}

@@ -1,0 +1,58 @@
+	\begin{tikzpicture}[scale = 1]
+		%\node at (3,-0.5) {};
+		\node (0) at (0,0) {\scriptsize{$\R$}};
+		%\node (1) at (3,0) {$1$};
+		\node (x) at (1,0) {\scriptsize{$\R$}};
+		\node (y) at (2,0) {\scriptsize{$\R$}};
+		\node (0x) at (0.5,1) {\scriptsize{$\R$}};
+		\node (y1) at (2.5,1) {\scriptsize{$\R$}};
+		\node (xy) at (1.5,1) {\scriptsize{$\R$}};
+		\node (0y) at (1,2) {\scriptsize{$\R$}};
+		\node (x1) at (2,2) {\scriptsize{$\R$}};
+		\node (a) at (1.5,3) {\scriptsize{$\R[a,b]\simeq\R^2$}};
+		
+		%\node (0) at (4,0) {$0$};
+		\node (1) at (6,0) {\scriptsize{$\R$}};
+		\node (x') at (4,0) {\scriptsize{$\R$}};
+		\node (y') at (5,0) {\scriptsize{$\R$}};
+		\node (0x') at (3.5,1) {\scriptsize{$\R$}};
+		\node (y'1) at (5.5,1) {\scriptsize{$\R$}};
+		\node (x'y') at (4.5,1) {\scriptsize{$\R$}};
+		\node (0y') at (4,2) {\scriptsize{$\R$}};
+		\node (x'1) at (5,2) {\scriptsize{$\R$}};
+		\node (b) at (4.5,3) {\scriptsize{$\R[a,b]\simeq\R^2$}};
+		
+		\node at (0.7,2.5) {\scriptsize{$1 \mapsto a$}};
+		\node at (5.3,2.5) {\scriptsize{$1 \mapsto b$}};
+		
+		%\draw[dotted] (0) -- (x);
+		\draw[dotted] (y) -- (x);
+		\draw[dotted] (y') -- (x');
+		%\draw[dotted] (y) -- (1);
+		
+		\draw[->] (0) -> (0x);
+		\draw[->] (x) -> (0x);
+		\draw[->] (1) -> (2.5,0.7);
+		\draw[->] (y) -> (y1);
+		\draw[->] (x) -> (xy);
+		\draw[->] (y) -> (xy);
+		\draw[->] (0x) -> (0y);
+		\draw[->] (xy) -> (0y);
+		\draw[->] (y1) -> (x1);
+		\draw[->] (xy) -> (x1);
+		\draw[->] (0y) -> (a);
+		\draw[->] (x1) -> (a);
+		
+		\draw[->] (0) -> (3.5,0.7);
+		\draw[->] (x') -> (0x');
+		\draw[->] (1) -> (y'1);
+		\draw[->] (y') -> (y'1);
+		\draw[->] (x') -> (x'y');
+		\draw[->] (y') -> (x'y');
+		\draw[->] (0x') -> (0y');
+		\draw[->] (x'y') -> (0y');
+		\draw[->] (y'1) -> (x'1);
+		\draw[->] (x'y') -> (x'1);
+		\draw[->] (0y') -> (b);
+		\draw[->] (x'1) -> (b);
+	\end{tikzpicture}

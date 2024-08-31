@@ -1,0 +1,24 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (x') at (0,0) {$c'$};
+   	\node (x) at (0,1.5) {$c$};
+	\node (Fx') at (1,0) {$F(c')$};
+	\node (Fx) at (1,1.5) {$F(c)$};
+	\node (Gy') at (4,0) {$G(d')$};
+	\node (Gy) at (4,1.5) {$G(d)$};
+	\node (y') at (5,0) {$d'$};
+   	\node (y) at (5,1.5) {$d$};
+	
+	\path[->,font=\scriptsize]
+		(y) edge node[right]{$j$} (y')
+		(Gy) edge node[right]{$G(j)$} (Gy')
+		(Fx) edge node[above]{$f$} (Gy);
+		
+	\path[->, dotted, font = \scriptsize]
+		(x) edge node[left]{$i$} (x')
+		(Fx) edge node[left]{$F(i)$} (Fx')
+		(Fx') edge node[below]{$g$} (Gy');
+			
+\end{tikzpicture}
+

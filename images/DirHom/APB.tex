@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+		\node (1) at (0,-0.3) {\scriptsize{$0$}};
+		\node (2) at (2,-0.3) {\scriptsize{$1$}};
+		\node (a) at (1,0.6) {\scriptsize{$a$}};
+		\node (b) at (1,-0.6) {\scriptsize{$b$}};
+		\node (x) at (0.5,0.6) {\scriptsize{$x$}};
+		\node (y) at (1.5,0.6) {\scriptsize{$y$}};
+		\node (x') at (0.5,-0.6) {\scriptsize{$x'$}};
+		\node (y') at (1.5,-0.6) {\scriptsize{$y'$}};
+		\draw (0,0) to [bend left = 45] (2,0);
+		\draw (0,0) to [bend right = 45] (2,0);
+		\draw (0.5,0.2) -- (0.5,0.4);
+		\draw (1.5,0.2) -- (1.5,0.4);
+		\draw (0.5,-0.2) -- (0.5,-0.4);
+		\draw (1.5,-0.2) -- (1.5,-0.4);
+		\draw (0,-0.1) -- (0,0.1);
+		\draw (2,-0.1) -- (2,0.1);
+		\draw[->,thick] (0.3,0.8) to [bend left = 40] (1.7,0.8);
+		\draw[->,thick] (0.3,-0.8) to [bend right = 40] (1.7,-0.8);
+\end{tikzpicture}

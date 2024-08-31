@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=1]
+		
+	\node (1) at (0,0) {$\bullet$};
+	\node (2) at (3,0) {$\bullet$};
+	\node (4) at (0,3) {$\bullet$};
+	\node (3) at (3,3) {$\bullet$};
+	
+	\path[->,font=\scriptsize]
+		(1) edge node[below]{$a$} (2)
+		(1) edge node[left]{$b$} (4)
+		(2) edge node[right]{$b$} (3)
+		(4) edge node[above]{$a$} (3);
+			
+\end{tikzpicture}

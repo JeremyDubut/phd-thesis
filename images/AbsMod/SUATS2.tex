@@ -1,0 +1,30 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (11) at (0,0) {$\bullet$};
+	\node (12) at (0,1.5) {$\bullet$};
+	\node (13) at (0,3) {$\bullet$};
+	\node (21) at (1.5,0) {$\bullet$};
+	\node (22) at (1.5, 1.5) {$\bullet$};
+	\node (23) at (1.5,3) {$\bullet$};
+	\node (31) at (3,0) {$\bullet$};
+	\node (32) at (3,1.5) {$\bullet$};
+	\node (33) at (3,3) {$\bullet$};
+	
+	
+	\path[->,font=\scriptsize]
+		(11) edge node[left]{$U$} (12)
+		(12) edge node[left]{$S_2$} (13)
+		(21) edge node[left]{$U$} (22)
+		(22) edge node[left]{$S_2$} (23)
+		(31) edge node[right]{$U$} (32)
+		(32) edge node[right]{$S_2$} (33)
+		(11) edge node[below]{$S_1$} (21)
+		(21) edge node[below]{$S_3$} (31)
+		(12) edge node[below]{$S_1$} (22)
+		(22) edge node[below]{$S_3$} (32)
+		(13) edge node[above]{$S_1$} (23)
+		(23) edge node[above]{$S_3$} (33);
+			
+\end{tikzpicture}
+

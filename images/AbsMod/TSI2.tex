@@ -1,0 +1,25 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (q) at (0,0) {$q$};
+	\node (q') at (3,0) {$q'$};
+	\node (q'') at (0,3) {$q''$};
+	\node (p) at (3,3) {$p$};
+	
+	\path[dotted, bend right = 45]
+		(0.1,2.5) edge (0.5,2.9)
+		(2.9,0.5) edge (2.5,0.1);
+		
+	\path[bend left = 45]
+		(0.1,0.5) edge (0.5,0.1);
+	
+	\path[->,font=\scriptsize]
+		(q) edge node[below]{$a$} (q')
+		(q) edge node[left]{$b$} (q'');
+		
+	\path[->, dotted, font=\scriptsize]
+		(q') edge node[right]{$b$} (p)
+		(q'') edge node[above]{$a$} (p);
+			
+\end{tikzpicture}
+

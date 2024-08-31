@@ -1,0 +1,20 @@
+
+\begin{tikzpicture}[scale=1]
+		
+	\node (11) at (0,0) {$\bullet$};
+	\node (12) at (0,3) {$\bullet$};
+	\node (21) at (3,0) {$\bullet$};
+	\node (22) at (3,3) {$\bullet$};
+	
+	\draw[draw = white, fill = gray!50] (0.1,0.1) rectangle (2.9,2.9);
+	
+	\node (c) at (1.5,1.5) {$c$};
+	
+	\path[->,font=\scriptsize]
+		(11) edge node[left]{$\lambda(\partial_2^0(c))$} (12)
+		(21) edge node[right]{$\lambda(\partial_2^1(c))$} (22)
+		(11) edge node[below]{$\lambda(\partial_1^0(c))$} (21)
+		(12) edge node[above]{$\lambda(\partial_1^1(c))$} (22);
+			
+\end{tikzpicture}
+

@@ -1,0 +1,134 @@
+
+\begin{tikzpicture}[scale=0.8]
+
+	\node (11) at (0,0) {};
+	\node (12) at (0,3) {};
+	\node (21) at (3,0) {};
+	\node (22) at (3,3) {};
+	
+	\draw[draw = white, fill = gray!50] (0.1,0.1) rectangle (2.9,2.9);
+	
+	\path[->,font=\scriptsize]
+		(11) edge (12)
+		(21) edge (22)
+		(11) edge (21)
+		(12) edge (22);
+		
+	\path[very thick, blue]
+		(0,0) edge (0,1.5)
+		(0,1.5) edge (1.5,1.5);
+		
+	\path[very thick, red]
+		(0,0) edge (1.5,0)
+		(1.5,0) edge (1.5,1.5);
+		
+	\path[very thick, dotted]
+		(-0.5,-0.5) edge (0,0)
+		(1.5,1.5) edge (2,2);
+		
+	\node at (0,0) {$\bullet$};
+	\node at (0,3) {$\bullet$};
+	\node at (3,0) {$\bullet$};
+	\node at (3,3) {$\bullet$};
+	
+	
+	
+	
+	\node (11p) at (5,0) {};
+	\node (12p) at (5,3) {};
+	\node (21p) at (8,0) {};
+	\node (22p) at (8,3) {};
+	
+	\draw[draw = white, fill = gray!50] (5.1,0.1) rectangle (7.9,2.9);
+	
+	\path[->,font=\scriptsize]
+		(11p) edge (12p)
+		(21p) edge (22p)
+		(11p) edge (21p)
+		(12p) edge (22p);
+		
+	\path[very thick, red]
+		(6.5,1.5) edge (6.5,3)
+		(6.5,3) edge (8,3);
+		
+	\path[very thick, blue]
+		(6.5,1.5) edge (8,1.5)
+		(8,1.5) edge (8,3);
+		
+	\path[very thick, dotted]
+		(6,1) edge (6.5,1.5)
+		(8,3) edge (8.5,3.5);
+		
+	\node at (5,0) {$\bullet$};
+	\node at (5,3) {$\bullet$};
+	\node at (8,0) {$\bullet$};
+	\node at (8,3) {$\bullet$};
+	
+	
+	
+	
+	\node (11pp) at (10,0) {};
+	\node (12pp) at (10,3) {};
+	\node (21pp) at (13,0) {};
+	\node (22pp) at (13,3) {};
+	
+	\draw[draw = white, fill = gray!50] (10.1,0.1) rectangle (12.9,2.9);
+	
+	\path[->,font=\scriptsize]
+		(11pp) edge (12pp)
+		(21pp) edge (22pp)
+		(11pp) edge (21pp)
+		(12pp) edge (22pp);
+		
+	\path[very thick, red]
+		(11.5,0) edge (13,0)
+		(13,0) edge (13,1.5);
+		
+	\path[very thick, blue]
+		(11.5,0) edge (11.5,1.5)
+		(11.5,1.5) edge (13,1.5);
+		
+	\path[very thick, dotted]
+		(11,-0.5) edge (11.5,0)
+		(13,1.5) edge (13.5,2);
+		
+	\node at (10,0) {$\bullet$};
+	\node at (10,3) {$\bullet$};
+	\node at (13,0) {$\bullet$};
+	\node at (13,3) {$\bullet$};
+	
+	
+	
+	
+	\node (11ppp) at (15,0) {};
+	\node (12ppp) at (15,3) {};
+	\node (21ppp) at (18,0) {};
+	\node (22ppp) at (18,3) {};
+	
+	\draw[draw = white, fill = gray!50] (15.1,0.1) rectangle (17.9,2.9);
+	
+	\path[->,font=\scriptsize]
+		(11ppp) edge (12ppp)
+		(21ppp) edge (22ppp)
+		(11ppp) edge (21ppp)
+		(12ppp) edge (22ppp);
+		
+	\path[very thick, blue]
+		(15,1.5) edge (16.5,1.5)
+		(16.5,1.5) edge (16.5,3);
+		
+	\path[very thick, red]
+		(15,1.5) edge (15,3)
+		(15,3) edge (16.5,3);
+		
+	\path[very thick, dotted]
+		(14.5,1) edge (15,1.5)
+		(16.5,3) edge (17,3.5);
+		
+	\node at (15,0) {$\bullet$};
+	\node at (15,3) {$\bullet$};
+	\node at (18,0) {$\bullet$};
+	\node at (18,3) {$\bullet$};
+			
+\end{tikzpicture}
+
